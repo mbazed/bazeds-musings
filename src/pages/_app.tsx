@@ -1,6 +1,20 @@
+// pages/_app.tsx
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        <title>Bazed&apos;s Musings</title>
+        <meta
+          name="description"
+          content="Personal blog exploring tech, creativity, and code."
+        />
+        <link rel="icon" href="/brain.ico" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
