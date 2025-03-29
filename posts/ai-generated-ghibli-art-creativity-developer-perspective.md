@@ -50,7 +50,7 @@ The Studio Ghibli art style's brilliance extends far beyond stunning visuals lik
 
 ## Lessons from History: How Technology Transforms Art
 
-History demonstrates that new technologies rarely extinguish art; instead, they transform it. The advent of photography prompted painters to embrace Impressionism. CGI initially seemed threatening to traditional animators, yet studios like Ghibli integrated it gracefully into their artistry. AI, similarly, represents another step forward—not the end of creativity, but a compelling opportunity to reimagine how we create and appreciate art.
+History demonstrates that new technologies rarely extinguish art; instead, they transform it. The advent of photography prompted painters to embrace Impressionism. CGI initially seemed threatening to traditional animators, yet studios like Ghibli integrated it gracefully into their artistry. AI, similarly, represents another step forward; not the end of creativity, but a compelling opportunity to reimagine how we create and appreciate art.
 
 ## Navigating Legality and Respect
 
@@ -62,11 +62,11 @@ As a developer, I've witnessed AI's entry into my own field. Initially, machines
 
 ## The Future of Creative Collaboration: Where AI Meets Human Ingenuity
 
-Imagine a future where creative workflows transcend traditional boundaries. Programmers who excel at code but struggle with visuals could leverage AI to generate artistic backgrounds in various styles, while artists uncomfortable with technical implementation could use AI to handle coding tasks. This symbiosis doesn't diminish either contribution—it amplifies both.
+Imagine a future where creative workflows transcend traditional boundaries. Programmers who excel at code but struggle with visuals could leverage AI to generate artistic backgrounds in various styles, while artists uncomfortable with technical implementation could use AI to handle coding tasks. This symbiosis doesn't diminish either contribution; it amplifies both.
 
 The AI art trend hints at this collaborative future. When we generate AI-assisted images depicting personal moments, we're not replacing artists but discovering new ways to express ourselves creatively. Similarly, artists might use code-generating AI to build interactive experiences without mastering programming languages.
 
-This vision aligns with history's pattern: technological advancements don't extinguish artistic expression—they transform and expand it. The magic happens not in the AI itself, but in the uniquely human capacity to find meaningful applications for these tools in our creative journeys.
+This vision aligns with history's pattern: technological advancements don't extinguish artistic expression; they transform and expand it. The magic happens not in the AI itself, but in the uniquely human capacity to find meaningful applications for these tools in our creative journeys.
 
 ## Conclusion: Finding Balance in the Digital Age
 
