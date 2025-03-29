@@ -41,7 +41,7 @@ AI-generated art captivates and challenges me. Stunning landscapes and portraits
 
 ### The Value Debate
 
-But this shift prompts big questions about artistic value and authenticity. Is AI redefining creativity, or is it just a new tool? The [Hiscox Art and AI Report 2024](https://www.hiscox.com/art-and-ai-report-2024) reveals that 40% of collectors foresee a rise in AI art sales, yet only 16% think it’ll rival human-made art’s worth. Meanwhile, 82% want clear labels distinguishing AI from human creations, reflecting our nuanced stance on machine-made art.
+But this shift prompts big questions about artistic value and authenticity. Is AI redefining creativity, or is it just a new tool? The [Hiscox Art and AI Report 2024](https://www.hiscoxgroup.com/news/blog/hiscoxs-art-and-ai-report-2024) reveals that 40% of collectors foresee a rise in AI art sales, yet only 16% think it’ll rival human-made art’s worth. Meanwhile, 82% want clear labels distinguishing AI from human creations, reflecting our nuanced stance on machine-made art.
 
 
 ## The Human Soul in Art: What Makes Ghibli Special
