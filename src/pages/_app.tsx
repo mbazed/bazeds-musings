@@ -1,5 +1,6 @@
 // pages/_app.tsx
 import ThemeToggle from "@/components/ThemeToggle";
+import { Analytics } from "@vercel/analytics/react"
 import "@/styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
       <div className="flex min-h-screen dark:bg-black">
         <Component {...pageProps} />
+        <Analytics/>
       </div>
     </ThemeProvider>
   );
