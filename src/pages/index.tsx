@@ -19,14 +19,14 @@ const postsDirectory = path.join(process.cwd(), "posts");
 
 export default function Home({ posts }: HomeProps) {
   return (
-    <div className="max-w-5xl mx-auto p-16 text-left">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8">Bazed&apos;s Musing</h1>
+    <div className="max-w-5xl mx-auto p-8 text-left dark:bg-black dark:text-white">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 dark:text-white">Bazed&apos;s Musing</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.slug} className="mb-4">
             <Link
               href={`/posts/${post.slug}`}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-600 hover:underline"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-600 hover:underline dark:text-white"
             >
               {post.data.title}
             </Link>
