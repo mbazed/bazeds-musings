@@ -59,15 +59,15 @@ const Post: React.FC<PostProps> = ({ data, content }) => {
           content={data.metaDescription ?? "Read my latest blog post"}
         />
       </Head>
-      <article className="max-w-5xl mx-auto p-6">
-        <Link href="/" className="text-blue-600 hover:underline">
+      <article className="max-w-5xl mx-auto p-6 bg-white dark:bg-black dark:text-white">
+        <Link href="/" className="text-blue-600 hover:underline dark:text-blue-400">
           ← Back to Home
         </Link>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 mt-2">
           {data.title}
         </h1>
-        <p className="text-gray-500 mb-8">{data.date}</p>
-        <div className="prose md:prose-sm lg:prose-lg prose-zinc max-w-none pb-16">
+        <p className="text-gray-500 mb-8 dark:text-gray-300">{data.date}</p>
+        <div className="prose md:prose-sm lg:prose-lg prose-zinc max-w-none pb-16 dark:prose-invert">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </div>
         <Footer />

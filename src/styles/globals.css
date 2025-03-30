@@ -4,8 +4,13 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   @apply bg-white text-black;
   font-family: 'Karla', serif;
+}
+
+::selection {
+  background-color: rgba(255, 166, 0, 0.255);
 }
