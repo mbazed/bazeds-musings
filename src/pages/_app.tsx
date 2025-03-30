@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       {isArticlepage && (
         <header>
-          <Link href="/" className="fixed mx-auto w-full bg-white dark:bg-black border-b border-blue-600 dark:border-blue-400 z-40 flex justify-start items-center p-4 text-blue-600 hover:underline dark:text-blue-400">
+          <Link href="/" className="fixed mx-auto w-full bg-white/40 dark:bg-black/40 backdrop-blur-sm border-b border-blue-600 dark:border-blue-400 z-40 flex justify-start items-center p-4 text-blue-600 hover:underline dark:text-blue-400">
           ← Back to Home
         </Link>
         </header>
