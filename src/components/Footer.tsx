@@ -1,12 +1,16 @@
 import React from "react";
 import { siGithub, siX } from "simple-icons/icons";
+import ThemeToggle from "./ThemeToggle";
 
 const Footer: React.FC = () => {
   return (
     <footer className="fixed bottom-0 left-0 w-full bg-gray-100 dark:bg-gray-950 text-center py-3 z-50 border-t border-gray-700 px-6 items-center justify-center">
       <div className="max-w-5xl mx-auto flex flex-row items-center justify-between">
-        <p className="text-sm text-gray-900 dark:text-gray-300">🖊️ Mohammed Bazed Ali</p>
-        <div className="flex justify-center space-x-4">
+        <p className="text-sm text-gray-900 dark:text-gray-300">
+          🖊️ Mohammed Bazed Ali
+        </p>
+        <div className="flex justify-center space-x-2">
+          <ThemeToggle />
           <a
             href="https://github.com/mbazed"
             target="_blank"

@@ -6,7 +6,6 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 import Head from "next/head";
 
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -60,9 +59,6 @@ const Post: React.FC<PostProps> = ({ data, content }) => {
         />
       </Head>
       <article className="max-w-5xl mx-auto p-6 bg-white dark:bg-black dark:text-white">
-        <Link href="/" className="text-blue-600 hover:underline dark:text-blue-400">
-          ← Back to Home
-        </Link>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 mt-2">
           {data.title}
         </h1>
