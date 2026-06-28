@@ -4,24 +4,32 @@ import ThemeToggle from "./ThemeToggle";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-gray-100 dark:bg-gray-950 text-center py-3 z-50 border-t border-gray-700 px-6 items-center justify-center">
+    <footer
+      className="w-full border-t px-6 py-4 mt-16"
+      style={{
+        borderColor: "var(--border)",
+        backgroundColor: "var(--bg-subtle)",
+      }}
+    >
       <div className="max-w-5xl mx-auto flex flex-row items-center justify-between">
-        <p className="text-sm text-gray-900 dark:text-gray-300">
-          🖊️ Mohammed Bazed Ali
+        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+          ♥
         </p>
-        <div className="flex justify-center space-x-2">
+        <div className="flex items-center space-x-2">
           <ThemeToggle />
           <a
             href="https://github.com/mbazed"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-900 hover:text-gray-600 transition-colors dark:text-gray-300"
+            aria-label="GitHub"
+            className="p-1.5 rounded-full border border-transparent transition-all duration-200 hover:border-[var(--accent)]"
+            style={{ color: "var(--text-muted)" }}
           >
             <svg
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="currentColor"
             >
               <title>GitHub</title>
@@ -32,13 +40,15 @@ const Footer: React.FC = () => {
             href="https://twitter.com/mbazedali"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-900 hover:text-gray-600 transition-colors dark:text-gray-300"
+            aria-label="Twitter / X"
+            className="p-1.5 rounded-full border border-transparent transition-all duration-200 hover:border-[var(--accent)]"
+            style={{ color: "var(--text-muted)" }}
           >
             <svg
               role="img"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="currentColor"
             >
               <title>Twitter</title>
