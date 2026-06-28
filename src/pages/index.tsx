@@ -30,7 +30,7 @@ export default function Home({ posts }: HomeProps) {
       className="flex flex-col min-h-screen"
       style={{ backgroundColor: "var(--bg)" }}
     >
-      <main className="max-w-2xl mx-auto w-full px-6 py-16 flex-1 fade-in">
+      <main className="max-w-4xl mx-auto w-full px-6 pt-16 pb-28 flex-1 fade-in">
         {/* ── Header ── */}
         <header className="mb-12">
           {/* <p
