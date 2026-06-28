@@ -5,13 +5,14 @@ import ThemeToggle from "./ThemeToggle";
 const Footer: React.FC = () => {
   return (
     <footer
-      className="w-full border-t px-6 py-4 mt-16"
+      className="fixed bottom-0 left-0 w-full border-t px-6 py-4 z-40"
       style={{
         borderColor: "var(--border)",
-        backgroundColor: "var(--bg-subtle)",
+        backgroundColor: "color-mix(in srgb, var(--bg-subtle) 85%, transparent)",
+        backdropFilter: "blur(12px)",
       }}
     >
-      <div className="max-w-5xl mx-auto flex flex-row items-center justify-between">
+      <div className="max-w-4xl mx-auto flex flex-row items-center justify-between">
         <p className="text-sm" style={{ color: "var(--text-muted)" }}>
           ♥
         </p>

@@ -88,10 +88,10 @@ const Post: React.FC<PostProps> = ({ data, content, readingTime }) => {
       <div ref={progressRef} id="scroll-progress" aria-hidden="true" />
 
       <div
-        className="flex flex-col min-h-screen fade-in"
+        className="flex flex-col min-h-screen"
         style={{ backgroundColor: "var(--bg)" }}
       >
-        <article className="max-w-2xl mx-auto w-full px-6 py-16 flex-1">
+        <article className="max-w-4xl mx-auto w-full px-6 pt-16 pb-28 flex-1 fade-in">
           {/* ── Post header ── */}
           <header className="mb-10">
             <h1
