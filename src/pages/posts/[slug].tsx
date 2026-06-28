@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Footer from "@/components/Footer";
@@ -26,6 +26,12 @@ export interface PostFrontMatter {
 interface PostProps {
   data: PostFrontMatter;
   content: string;
+  readingTime: number;
+}
+
+function estimateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -43,11 +49,30 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   const { data, content } = matter(fileContents);
 
   return {
-    props: { data: data as PostFrontMatter, content },
+    props: {
+      data: data as PostFrontMatter,
+      content,
+      readingTime: estimateReadingTime(content),
+    },
   };
 };
 
-const Post: React.FC<PostProps> = ({ data, content }) => {
+const Post: React.FC<PostProps> = ({ data, content, readingTime }) => {
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = progressRef.current;
+      if (!el) return;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      el.style.width = `${pct}%`;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <Head>
@@ -58,16 +83,47 @@ const Post: React.FC<PostProps> = ({ data, content }) => {
           content={data.metaDescription ?? "Read my latest blog post"}
         />
       </Head>
-      <article className="max-w-5xl mx-auto p-6 bg-white dark:bg-black dark:text-white">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 mt-2">
-          {data.title}
-        </h1>
-        <p className="text-gray-500 mb-8 dark:text-gray-300">{data.date}</p>
-        <div className="prose md:prose-sm lg:prose-lg prose-zinc max-w-none pb-16 dark:prose-invert">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-        </div>
+
+      {/* Scroll progress bar */}
+      <div ref={progressRef} id="scroll-progress" aria-hidden="true" />
+
+      <div
+        className="flex flex-col min-h-screen fade-in"
+        style={{ backgroundColor: "var(--bg)" }}
+      >
+        <article className="max-w-2xl mx-auto w-full px-6 py-16 flex-1">
+          {/* ── Post header ── */}
+          <header className="mb-10">
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl font-normal leading-tight mb-5"
+              style={{
+                color: "var(--text)",
+                fontFamily: "'Lora', Georgia, serif",
+              }}
+            >
+              {data.title}
+            </h1>
+
+            <div
+              className="flex items-center gap-3 text-sm"
+              style={{ color: "var(--text-muted)" }}
+            >
+              <time dateTime={data.date}>{data.date}</time>
+              <span aria-hidden>·</span>
+              <span>{readingTime} min read</span>
+            </div>
+          </header>
+
+          <hr className="warm-divider" />
+
+          {/* ── Content ── */}
+          <div className="prose prose-zinc md:prose-base lg:prose-lg max-w-none pb-12">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </div>
+        </article>
+
         <Footer />
-      </article>
+      </div>
     </>
   );
 };

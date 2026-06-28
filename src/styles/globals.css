@@ -1,16 +1,184 @@
-@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-body {
-  @apply bg-white text-black;
-  font-family: 'Karla', serif;
+/* ─── Forest Green palette ───────────────────────────────── */
+/*
+  Evergreen    #132a13   rgb(19,  42,  19)
+  Hunter Green #31572c   rgb(49,  87,  44)
+  Fern         #4f772d   rgb(79,  119, 45)
+  Palm Leaf    #90a955   rgb(144, 169, 85)
+  Lime Cream   #ecf39e   rgb(236, 243, 158)
+*/
+:root {
+  --bg:          #f7fdf3;
+  --bg-subtle:   #eef7e5;
+  --border:      #c8ddb0;
+  --text:        #132a13;
+  --text-muted:  #4f772d;
+  --accent:      #31572c;
+  --accent-light:#4f772d;
+  --card-bg:     #ffffff;
+  --card-hover:  #f3fbe8;
 }
 
+.dark {
+  --bg:          #000000;
+  --bg-subtle:   #0d0d0d;
+  --border:      #31572c;
+  --text:        #ecf39e;
+  --text-muted:  #90a955;
+  --accent:      #90a955;
+  --accent-light:#ecf39e;
+  --card-bg:     #0d0d0d;
+  --card-hover:  #1a1a1a;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Base ───────────────────────────────────────────────── */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Lora', Georgia, serif;
+  @apply antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Typography ─────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* ─── Selection ──────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(255, 166, 0, 0.255);
+  background-color: rgba(144, 169, 85, 0.3);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ─── Prose overrides ────────────────────────────────────── */
+.prose {
+  font-family: 'Lora', Georgia, serif;
+}
+.prose a {
+  color: var(--accent-light) !important;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s ease;
+}
+.prose a:hover {
+  text-decoration-color: var(--accent-light) !important;
+}
+.prose blockquote {
+  border-left-color: var(--accent) !important;
+  font-style: italic;
+  color: var(--text-muted) !important;
+}
+
+/* Dark mode prose — use our CSS vars instead of prose-invert white */
+.dark .prose,
+.dark .prose p,
+.dark .prose li,
+.dark .prose ol,
+.dark .prose ul {
+  color: var(--text-muted);
+}
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: var(--text);
+}
+.dark .prose strong {
+  color: var(--text);
+}
+.dark .prose code {
+  color: var(--accent-light);
+  background-color: var(--bg-subtle);
+}
+.dark .prose pre {
+  background-color: var(--bg-subtle);
+}
+.dark .prose hr {
+  border-color: var(--border);
+}
+.dark .prose figcaption {
+  color: var(--text-muted);
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.45s ease both;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide-down {
+  animation: slideDown 0.3s ease both;
+}
+
+/* Use this on containers that have position:fixed children —
+   transform creates a new containing block which breaks fixed positioning */
+@keyframes fadeOnly {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-only {
+  animation: fadeOnly 0.3s ease both;
+}
+
+/* ─── Scroll progress bar ────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(to right, #4f772d, #90a955, #ecf39e);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ─── Post cards ─────────────────────────────────────────── */
+.post-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.post-card:hover {
+  background-color: var(--card-hover);
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79, 119, 45, 0.12);
+}
+
+/* ─── Divider ────────────────────────────────────────────── */
+.warm-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 2rem 0;
 }
