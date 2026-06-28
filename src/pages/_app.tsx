@@ -1,16 +1,15 @@
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import "@/styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import CursorGlow from "@/components/CursorGlow";
 
 export default function App({ Component, pageProps }: AppProps) {
-
   const router = useRouter();
-  
-  const isArticlepage = router.pathname.startsWith("/posts");
+  const isArticlePage = router.pathname.startsWith("/posts");
 
   return (
     <ThemeProvider attribute="class">
@@ -22,16 +21,32 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <link rel="icon" href="/brain.ico" />
       </Head>
-      {isArticlepage && (
-        <header>
-          <Link href="/" className="fixed mx-auto w-full bg-white/40 dark:bg-black/40 backdrop-blur-sm border-b border-blue-600 dark:border-blue-400 z-40 flex justify-start items-center p-4 text-blue-600 hover:underline dark:text-blue-400">
-          ← Back to Home
-        </Link>
-        </header>
-      )}
-      <div className={`${isArticlepage ? "pt-8" : ""} flex min-h-screen dark:bg-black`}>
+
+      <div
+        className={`${isArticlePage ? "pt-12" : ""} flex flex-col min-h-screen relative`}
+        style={{ backgroundColor: "transparent", zIndex: 1 }}
+      >
+        <CursorGlow />
+        
+        {isArticlePage && (
+          <header className="fade-only relative z-50">
+            <Link
+              href="/"
+              className="fixed top-0 left-0 w-full flex justify-start items-center px-6 py-3 text-sm font-medium transition-colors duration-200"
+              style={{
+                backgroundColor: "color-mix(in srgb, var(--bg) 80%, transparent)",
+                backdropFilter: "blur(12px)",
+                borderBottom: "1px solid var(--border)",
+                color: "var(--accent)",
+              }}
+            >
+              ← Back to Home
+            </Link>
+          </header>
+        )}
+
         <Component {...pageProps} />
-        <Analytics/>
+        <Analytics />
       </div>
     </ThemeProvider>
   );

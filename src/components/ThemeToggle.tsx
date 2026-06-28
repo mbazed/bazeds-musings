@@ -1,24 +1,26 @@
 import { useTheme } from "next-themes";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 const ThemeToggle: React.FC = () => {
   const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    console.log("Resolved theme:", resolvedTheme);
-  }, [resolvedTheme]);
+  // Avoid hydration mismatch
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div className="w-6 h-6" />;
 
   return (
     <button
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="rounded-4xl border-2 justify-center items-center border-transparent hover:border-gray-500 dark:hover:border-yellow-500 focus:outline-none cursor-pointer"
+      className="rounded-full p-1.5 border border-transparent hover:border-[var(--accent)] focus:outline-none cursor-pointer transition-all duration-200 hover:bg-[var(--card-hover)]"
       aria-label="Toggle Theme"
     >
       {resolvedTheme === "dark" ? (
-        <Sun className="h-6 w-6 text-yellow-500" />
+        <Sun className="h-5 w-5 text-[var(--accent)]" />
       ) : (
-        <Moon className="h-6 w-6 text-gray-900" />
+        <Moon className="h-5 w-5 text-[var(--text-muted)]" />
       )}
     </button>
   );
