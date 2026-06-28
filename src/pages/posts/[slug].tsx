@@ -73,59 +73,75 @@ const Post: React.FC<PostProps> = ({ data, content, readingTime }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <>
-      <Head>
-        <title>{`${data.title} | Bazed's Musings`}</title>
-        <link rel="icon" href="/hand.ico" />
-        <meta
-          name="description"
-          content={data.metaDescription ?? "Read my latest blog post"}
-        />
-      </Head>
+  const Post: React.FC<PostProps> = ({ data, content, readingTime }) => {
+    const progressRef = useRef<HTMLDivElement>(null);
 
-      {/* Scroll progress bar */}
-      <div ref={progressRef} id="scroll-progress" aria-hidden="true" />
+    useEffect(() => {
+      const handleScroll = () => {
+        const el = progressRef.current;
+        if (!el) return;
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        el.style.width = `${pct}%`;
+      };
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-      <div
-        className="flex flex-col min-h-screen"
-        style={{ backgroundColor: "var(--bg)" }}
-      >
-        <article className="max-w-4xl mx-auto w-full px-6 pt-16 pb-28 flex-1 fade-in">
-          {/* ── Post header ── */}
-          <header className="mb-10">
-            <h1
-              className="text-4xl sm:text-5xl md:text-6xl font-normal leading-tight mb-5"
-              style={{
-                color: "var(--text)",
-                fontFamily: "'Lora', Georgia, serif",
-              }}
-            >
-              {data.title}
-            </h1>
+    return (
+      <>
+        <Head>
+          <title>{`${data.title} | Bazed's Musings`}</title>
+          <link rel="icon" href="/hand.ico" />
+          <meta
+            name="description"
+            content={data.metaDescription ?? "Read my latest blog post"}
+          />
+        </Head>
 
-            <div
-              className="flex items-center gap-3 text-sm"
-              style={{ color: "var(--text-muted)" }}
-            >
-              <time dateTime={data.date}>{data.date}</time>
-              <span aria-hidden>·</span>
-              <span>{readingTime} min read</span>
+        {/* Scroll progress bar */}
+        <div ref={progressRef} id="scroll-progress" aria-hidden="true" />
+
+        <div
+          className="flex flex-col min-h-screen"
+          style={{ backgroundColor: "var(--bg)" }}
+        >
+          <article className="max-w-4xl mx-auto w-full px-6 pt-16 pb-28 flex-1 fade-in">
+            {/* ── Post header ── */}
+            <header className="mb-10">
+              <h1
+                className="text-4xl sm:text-5xl md:text-6xl font-normal leading-tight mb-5"
+                style={{
+                  color: "var(--text)",
+                  fontFamily: "'Lora', Georgia, serif",
+                }}
+              >
+                {data.title}
+              </h1>
+
+              <div
+                className="flex items-center gap-3 text-sm"
+                style={{ color: "var(--text-muted)" }}
+              >
+                <time dateTime={data.date}>{data.date}</time>
+                <span aria-hidden>·</span>
+                <span>{readingTime} min read</span>
+              </div>
+            </header>
+
+            <hr className="warm-divider" />
+
+            {/* ── Content ── */}
+            <div className="prose prose-zinc md:prose-base lg:prose-lg max-w-none pb-12">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
-          </header>
+          </article>
 
-          <hr className="warm-divider" />
+          <Footer />
+        </div>
+      </>
+    );
+  };
 
-          {/* ── Content ── */}
-          <div className="prose prose-zinc md:prose-base lg:prose-lg max-w-none pb-12">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-          </div>
-        </article>
-
-        <Footer />
-      </div>
-    </>
-  );
-};
-
-export default Post;
+  export default Post;
